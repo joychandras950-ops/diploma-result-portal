@@ -6,14 +6,14 @@
   const message = document.getElementById('message');
   const result = document.getElementById('result');
   let index = null;
-  let portalConfig = { institute: 'Feni Government Computer Institute', developerName: 'Developer', facebook: 'https://www.facebook.com/joy.chondro.sarker.2024' };
+  let portalConfig = { developerName: 'Joy Chondro Sarker', facebook: 'https://www.facebook.com/joy.chondro.sarker.2024' };
 
   async function loadPortalConfig() {
     try {
       const response = await fetch('./developer.json', { cache: 'no-store' });
       if (!response.ok) throw new Error('Developer config unavailable');
       const config = await response.json();
-      portalConfig = { ...portalConfig, ...config };
+      portalConfig = { developerName: config.developerName || portalConfig.developerName, facebook: config.facebook || portalConfig.facebook };
       const name = byId('developerName');
       const link = byId('developerFacebook');
       if (name && portalConfig.developerName) name.textContent = portalConfig.developerName;
@@ -52,7 +52,7 @@
     const record = sortedRecords[0];
     // শিক্ষার্থীর প্রতিষ্ঠান শুধু তার নিজের JSON রেকর্ড থেকে নাও; Developer config কখনো fallback নয়।
     const studentInstitute = sortedRecords.find(item => String(item.institute || '').trim())?.institute;
-    byId('institute').textContent = String(studentInstitute || '').trim() || 'এই রোলের ডেটায় প্রতিষ্ঠানের নাম নেই';
+    byId('institute').textContent = String(studentInstitute || '').trim() || 'প্রতিষ্ঠানের তথ্য ডেটাবেজে নেই';
     byId('category').textContent = record.category || 'Diploma in Engineering';
     byId('regulation').textContent = record.regulation || 'তথ্য নেই';
     byId('rollValue').textContent = roll;
@@ -73,68 +73,66 @@
       const gpa = document.createElement('div'); gpa.className = 'gpa'; gpa.textContent = Number.isFinite(value) ? value.toFixed(2) : gpas[sem];
       row.append(name, track, gpa); list.append(row);
     });
-    // ফেল করা বিষয়গুলো শুধু মূল JSON-এর FAIL রেকর্ড ও subjects তালিকা থেকে দেখানো হয়।
-    const failRecords = sortedRecords.filter(item => String(item.status || '').toUpperCase() === 'FAIL' && Array.isArray(item.subjects) && item.subjects.length);
-    const failPanel = byId('failSummary');
-    const failList = byId('failSemesterList');
-    failList.replaceChildren();
-    const totalFailed = new Set();
-    failRecords.forEach(item => {
-      const codes = [...new Set(item.subjects.map(code => String(code).trim()).filter(Boolean))];
-      codes.forEach(code => totalFailed.add(`${item.semester}:${code}`));
-      const card = document.createElement('div');
-      card.className = 'fail-semester-card';
-      const heading = document.createElement('strong');
-      const semNo = Number(item.semester);
-      const ordinals = {'1':'১ম','2':'২য়','3':'৩য়','4':'৪র্থ','5':'৫ম','6':'৬ষ্ঠ','7':'৭ম','8':'৮ম'};
-      heading.textContent = `${ordinals[String(semNo)] || semNo} সেমিস্টার — ${codes.length}টি বিষয়ে অকৃতকার্য`;
-      const codesBox = document.createElement('div');
-      codesBox.className = 'fail-codes';
-      codes.forEach(code => {
-        const chip = document.createElement('span');
-        chip.className = 'fail-code';
-        chip.textContent = code;
-        codesBox.append(chip);
-      });
-      card.append(heading, codesBox);
-      failList.append(card);
-    });
-    failPanel.classList.toggle('hidden', failRecords.length === 0);
-    byId('failTotal').textContent = `${totalFailed.size.toLocaleString('bn-BD')}টি`;
+    // Referred subjects are identified from raw ref_sub fields; subjects array
+    // is used only as a fallback when a record explicitly contains a ref marker.
+    const referredBySemester = new Map();
+    const failBySemester = new Map();
+    const parseCodes = value => [...new Set(String(value || '').match(/\d{4,6}\s*\([A-Za-z]+\)/g) || [])].map(x => x.replace(/\s+/g, ''));
 
-    // রেফার্ড বিষয় raw ফিল্ডের ref_sub / reffered_sub / referred_sub থেকে আলাদা করে পড়ি।
-    const referredPanel = byId('referredSummary');
-    const referredList = byId('referredSemesterList');
-    referredList.replaceChildren();
-    const referredEntries = [];
     sortedRecords.forEach(item => {
       const raw = String(item.raw || '');
-      const match = raw.match(/\b(?:ref_sub|reffered_sub|referred_sub)\s*[-:]\s*([^;\n]+)/i);
-      if (!match) return;
-      const codes = [...new Set(match[1].split(/[,،]/).map(code => code.trim()).filter(Boolean))];
-      if (codes.length) referredEntries.push({ semester: item.semester, codes });
+      const refMatch = raw.match(/(?:ref_sub|reffered_sub|referred_sub)\s*[-:=]\s*([\s\S]*?)(?=,?\s*(?:gpa\d+|expelled_sub)\s*[-:=]|$)/i);
+      const hasRefMarker = Boolean(refMatch) || /\bgpa\d+\s*:\s*ref\b/i.test(raw);
+      let refCodes = refMatch ? parseCodes(refMatch[1]) : [];
+      if (!refCodes.length && hasRefMarker) refCodes = parseCodes((item.subjects || []).join(', '));
+      if (refCodes.length) {
+        const key = String(item.semester || 'তথ্য নেই');
+        const set = referredBySemester.get(key) || new Set();
+        refCodes.forEach(code => set.add(code));
+        referredBySemester.set(key, set);
+      }
+      const allCodes = parseCodes((item.subjects || []).join(', '));
+      const refSet = new Set(refCodes);
+      const failedCodes = allCodes.filter(code => !refSet.has(code));
+      if (String(item.status || '').toUpperCase() === 'FAIL' && failedCodes.length) {
+        const key = String(item.semester || 'তথ্য নেই');
+        const set = failBySemester.get(key) || new Set();
+        failedCodes.forEach(code => set.add(code));
+        failBySemester.set(key, set);
+      }
     });
-    referredEntries.forEach(entry => {
-      const card = document.createElement('div');
-      card.className = 'referred-semester-card';
-      const heading = document.createElement('strong');
-      const semNo = Number(entry.semester);
-      const ordinals = {'1':'১ম','2':'২য়','3':'৩য়','4':'৪র্থ','5':'৫ম','6':'৬ষ্ঠ','7':'৭ম','8':'৮ম'};
-      heading.textContent = `${ordinals[String(semNo)] || semNo} সেমিস্টার — ${entry.codes.length}টি রেফার্ড বিষয়`;
-      const codesBox = document.createElement('div');
-      codesBox.className = 'referred-codes';
-      entry.codes.forEach(code => {
-        const chip = document.createElement('span');
-        chip.className = 'referred-code';
-        chip.textContent = code;
-        codesBox.append(chip);
+
+    const renderSubjectGroups = (groups, listId, cardClass, codesClass, chipClass, headingSuffix) => {
+      const list = byId(listId);
+      list.replaceChildren();
+      [...groups.entries()].sort((a,b) => Number(a[0]) - Number(b[0])).forEach(([sem, set]) => {
+        const codes = [...set];
+        const card = document.createElement('div');
+        card.className = cardClass;
+        const heading = document.createElement('strong');
+        const ordinals = {'1':'১ম','2':'২য়','3':'৩য়','4':'৪র্থ','5':'৫ম','6':'৬ষ্ঠ','7':'৭ম','8':'৮ম'};
+        heading.textContent = `${ordinals[String(sem)] || sem} সেমিস্টার — ${codes.length}টি ${headingSuffix}`;
+        const box = document.createElement('div');
+        box.className = codesClass;
+        codes.forEach(code => {
+          const chip = document.createElement('span');
+          chip.className = chipClass;
+          chip.textContent = code;
+          box.append(chip);
+        });
+        card.append(heading, box);
+        list.append(card);
       });
-      card.append(heading, codesBox);
-      referredList.append(card);
-    });
-    referredPanel.classList.toggle('hidden', referredEntries.length === 0);
-    const referredCount = referredEntries.reduce((sum, entry) => sum + entry.codes.length, 0);
-    byId('referredTotal').textContent = `${referredCount.toLocaleString('bn-BD')}টি`;
+      return [...groups.values()].reduce((sum, set) => sum + set.size, 0);
+    };
+
+    const failTotal = renderSubjectGroups(failBySemester, 'failSemesterList', 'fail-semester-card', 'fail-codes', 'fail-code', 'বিষয়ে অকৃতকার্য');
+    byId('failSummary').classList.toggle('hidden', failTotal === 0);
+    byId('failTotal').textContent = `${failTotal.toLocaleString('bn-BD')}টি`;
+
+    const referredTotal = renderSubjectGroups(referredBySemester, 'referredSemesterList', 'referred-semester-card', 'referred-codes', 'referred-code', 'রেফার্ড বিষয়');
+    byId('referredSummary').classList.toggle('hidden', referredTotal === 0);
+    byId('referredTotal').textContent = `${referredTotal.toLocaleString('bn-BD')}টি`;
     byId('semesterNote').textContent = semesters.length ? `এই রেকর্ডে ${semesters.length}টি সেমিস্টারের GPA পাওয়া গেছে।` : 'এই রেকর্ডে সেমিস্টারভিত্তিক GPA পাওয়া যায়নি।';
     byId('semesterNote').classList.toggle('hidden', semesters.length === 0);
     byId('cgpaNotice').classList.toggle('hidden', record.cgpa !== null && record.cgpa !== undefined && record.cgpa !== '');
