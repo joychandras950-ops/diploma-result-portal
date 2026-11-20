@@ -6,6 +6,20 @@
   const message = document.getElementById('message');
   const result = document.getElementById('result');
   let index = null;
+  let portalConfig = { institute: 'Feni Government Computer Institute', developerName: 'Developer', facebook: 'https://www.facebook.com/joy.chondro.sarker.2024' };
+
+  async function loadPortalConfig() {
+    try {
+      const response = await fetch('./developer.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Developer config unavailable');
+      const config = await response.json();
+      portalConfig = { ...portalConfig, ...config };
+      const name = byId('developerName');
+      const link = byId('developerFacebook');
+      if (name && portalConfig.developerName) name.textContent = portalConfig.developerName;
+      if (link && portalConfig.facebook) link.href = portalConfig.facebook;
+    } catch (_) { /* Built-in defaults keep the footer working. */ }
+  }
 
   const byId = id => document.getElementById(id);
   function showMessage(text, error = false) {
@@ -35,7 +49,7 @@
     const records = index[roll];
     if (!records || !records.length) return showMessage('এই রোল নম্বরের কোনো ফলাফল পাওয়া যায়নি। রোল নম্বরটি যাচাই করে আবার চেষ্টা করুন।', true);
     const record = records.slice().sort((a,b) => Number(b.semester || 0) - Number(a.semester || 0))[0];
-    byId('institute').textContent = record.institute || 'তথ্য নেই';
+    byId('institute').textContent = portalConfig.institute || record.institute || 'তথ্য নেই';
     byId('category').textContent = record.category || 'Diploma in Engineering';
     byId('regulation').textContent = record.regulation || 'তথ্য নেই';
     byId('rollValue').textContent = roll;
@@ -70,5 +84,6 @@
     search(roll);
     button.disabled = false;
   });
+  loadPortalConfig();
   loadIndex();
 })();
