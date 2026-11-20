@@ -50,8 +50,9 @@
     if (!records || !records.length) return showMessage('এই রোল নম্বরের কোনো ফলাফল পাওয়া যায়নি। রোল নম্বরটি যাচাই করে আবার চেষ্টা করুন।', true);
     const sortedRecords = records.slice().sort((a,b) => Number(b.semester || 0) - Number(a.semester || 0));
     const record = sortedRecords[0];
+    // শিক্ষার্থীর প্রতিষ্ঠান শুধু তার নিজের JSON রেকর্ড থেকে নাও; Developer config কখনো fallback নয়।
     const studentInstitute = sortedRecords.find(item => String(item.institute || '').trim())?.institute;
-    byId('institute').textContent = String(studentInstitute || '').trim() || 'প্রতিষ্ঠানের তথ্য পাওয়া যায়নি';
+    byId('institute').textContent = String(studentInstitute || '').trim() || 'এই রোলের ডেটায় প্রতিষ্ঠানের নাম নেই';
     byId('category').textContent = record.category || 'Diploma in Engineering';
     byId('regulation').textContent = record.regulation || 'তথ্য নেই';
     byId('rollValue').textContent = roll;
@@ -101,14 +102,14 @@
     failPanel.classList.toggle('hidden', failRecords.length === 0);
     byId('failTotal').textContent = `${totalFailed.size.toLocaleString('bn-BD')}টি`;
 
-    // রেফার্ড বিষয় FAIL তালিকা থেকে আলাদা রাখা হয়; মূল PDF-উদ্ধৃত raw টেক্সট থেকে কোড পড়া হয়।
+    // রেফার্ড বিষয় raw ফিল্ডের ref_sub / reffered_sub / referred_sub থেকে আলাদা করে পড়ি।
     const referredPanel = byId('referredSummary');
     const referredList = byId('referredSemesterList');
     referredList.replaceChildren();
     const referredEntries = [];
     sortedRecords.forEach(item => {
       const raw = String(item.raw || '');
-      const match = raw.match(/(?:ref(?:e|e)?r?red|reffered|ref)_sub\s*[-:]\s*([^\n;]+)/i);
+      const match = raw.match(/\b(?:ref_sub|reffered_sub|referred_sub)\s*[-:]\s*([^;\n]+)/i);
       if (!match) return;
       const codes = [...new Set(match[1].split(/[,،]/).map(code => code.trim()).filter(Boolean))];
       if (codes.length) referredEntries.push({ semester: item.semester, codes });
