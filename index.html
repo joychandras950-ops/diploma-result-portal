@@ -3,202 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101f3d">
-<meta name="description" content="Diploma in Engineering result search portal">
+<meta name="theme-color" content="#12213f">
+<meta name="description" content="Diploma in Engineering semester result search portal">
 <title>Diploma Result Portal Hub</title>
 <style>
-:root{--navy:#101f3d;--blue:#2463eb;--ink:#17233b;--muted:#64748b;--line:#e3eaf3;--bg:#f4f7fc;--green:#087f5b}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
-.hero{background:linear-gradient(125deg,#101f3d 0%,#173e70 58%,#2463a7 100%);color:#fff;padding:34px 18px 82px;position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff20;border-radius:50%;right:-95px;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff06}
-.wrap{max-width:920px;margin:auto;position:relative;z-index:1}
-.brand{font-size:11px;letter-spacing:.16em;font-weight:800;color:#c8dcf8}
-h1{font-size:clamp(27px,5vw,43px);line-height:1.18;margin:15px 0 9px;letter-spacing:-.03em}
-.subtitle{margin:0;color:#d8e6f8;font-size:14px}
-main{max-width:920px;margin:-48px auto 34px;padding:0 15px;position:relative;z-index:2}
-.panel{background:#fff;border:1px solid var(--line);border-radius:21px;padding:24px;box-shadow:0 16px 45px #142b4b0d}
-.section-title{font-size:18px;margin:0 0 7px}
-.section-sub{font-size:12px;color:var(--muted);margin:0 0 17px}
-.search-row{display:flex;gap:10px}
-.search-row input{flex:1;min-width:0;border:1px solid #d2ddeb;border-radius:13px;padding:15px 16px;font-size:18px;color:var(--ink);outline:none;background:#fbfdff}
-.search-row input:focus{border-color:var(--blue);box-shadow:0 0 0 4px #2463eb15}
-button{border:0;border-radius:13px;background:var(--blue);color:white;padding:0 23px;font-size:14px;font-weight:750;cursor:pointer;box-shadow:0 5px 13px #2463eb26}
-button:hover{background:#1d55d2}
-button:disabled{opacity:.6;cursor:wait}
-.hint{font-size:11px;color:var(--muted);margin-top:10px}
-.status{font-size:13px;font-weight:700;margin:18px 0 9px;min-height:20px}
-.results{display:grid;gap:13px}
-.result{border:1px solid var(--line);border-radius:16px;padding:17px;background:linear-gradient(180deg,#fff,#fbfdff)}
-.result-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid #edf1f6;padding-bottom:12px}
-.result h3{font-size:15px;margin:0 0 5px}
-.sub{font-size:11px;color:var(--muted);overflow-wrap:anywhere}
-.tag{font-size:11px;background:#edf4ff;color:#2055a5;padding:6px 10px;border-radius:30px;white-space:nowrap;font-weight:750}
-.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}
-.metric{background:#f6f9fd;border:1px solid #eaf0f7;border-radius:12px;padding:11px}
-.metric label{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
-.metric strong{font-size:16px;overflow-wrap:anywhere}
-.record{margin-top:12px;padding:11px 12px;border-radius:11px;background:#f8fafc;color:#526277;font-size:12px;line-height:1.7;overflow-wrap:anywhere}
-.pill{display:inline-block;background:#e8f7f1;color:var(--green);font-size:11px;padding:5px 9px;border-radius:30px;font-weight:750;margin-top:12px}
-.empty{padding:22px;text-align:center;color:var(--muted);background:#f8fafc;border-radius:13px;font-size:13px}
-.about{display:flex;gap:15px;align-items:center}
-.about img{width:66px;height:66px;object-fit:cover;border-radius:50%;border:3px solid #e7eff8}
-.about h3{margin:0 0 4px;font-size:15px}
-.about p{margin:3px 0;font-size:11px;color:var(--muted)}
-.about a{color:var(--blue);text-decoration:none;font-weight:700}
-.notice{font-size:11px;line-height:1.7;color:var(--muted);margin:15px 3px 0}
-footer{text-align:center;color:#8290a4;font-size:11px;padding:18px 14px 26px}
-@media(max-width:560px){.panel{padding:17px}.search-row{flex-direction:column}.search-row button{padding:14px}.result-head{display:block}.tag{display:inline-block;margin-top:8px}.metrics{grid-template-columns:1fr 1fr}}
+:root{--ink:#17243a;--muted:#66758c;--line:#e4eaf2;--bg:#f3f6fb;--navy:#12213f;--blue:#245edb;--green:#087f5b;--red:#c83242}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+.hero{background:linear-gradient(125deg,#101e39,#174477 62%,#2465a3);color:#fff;padding:35px 18px 82px;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:360px;height:360px;border:1px solid #ffffff22;border-radius:50%;right:-110px;top:-190px;box-shadow:0 0 0 38px #ffffff09,0 0 0 80px #ffffff06}
+.wrap{max-width:960px;margin:auto;position:relative;z-index:1}.brand{font-size:11px;letter-spacing:.15em;font-weight:800;color:#d0e2fa}h1{font-size:clamp(27px,5vw,43px);line-height:1.17;margin:14px 0 8px;letter-spacing:-.025em}.subtitle{margin:0;color:#dce9f8;font-size:14px}
+main{max-width:960px;margin:-48px auto 35px;padding:0 15px;position:relative;z-index:2}.panel{background:#fff;border:1px solid var(--line);border-radius:21px;padding:23px;box-shadow:0 15px 42px #132b4b0d}.section-title{font-size:18px;margin:0 0 6px}.section-sub{font-size:12px;color:var(--muted);margin:0 0 17px}.search-row{display:flex;gap:10px}.search-row input{flex:1;min-width:0;border:1px solid #d2ddeb;border-radius:13px;padding:15px 16px;font-size:18px;outline:none;background:#fbfdff;color:var(--ink)}.search-row input:focus{border-color:var(--blue);box-shadow:0 0 0 4px #245edb16}button{border:0;border-radius:13px;background:var(--blue);color:#fff;padding:0 23px;font-size:14px;font-weight:750;cursor:pointer;box-shadow:0 5px 13px #245edb25}button:hover{background:#1d50c1}button:disabled{opacity:.6;cursor:wait}.hint{font-size:11px;color:var(--muted);margin-top:10px}.status{font-size:13px;font-weight:700;margin:18px 0 10px;min-height:20px}.status.error{color:var(--red)}.status.ok{color:var(--green)}
+.groups{display:grid;gap:18px}.group{border:1px solid var(--line);border-radius:17px;overflow:hidden;background:#fff}.group-head{padding:14px 17px;background:#f8faff;border-bottom:1px solid var(--line)}.group-head h3{margin:0 0 4px;font-size:14px}.group-head p{margin:0;color:var(--muted);font-size:11px}.semester-list{display:grid;gap:12px;padding:13px}.semester-card{border:1px solid var(--line);border-radius:14px;overflow:hidden}.semester-top{padding:12px 14px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}.semester-top h4{font-size:14px;margin:0}.sem1 .semester-top{background:linear-gradient(110deg,#2455a6,#387bd1)}.sem2 .semester-top{background:linear-gradient(110deg,#6444a8,#8a67cf)}.sem3 .semester-top{background:linear-gradient(110deg,#087f9a,#2aabc2)}.sem4 .semester-top{background:linear-gradient(110deg,#16805b,#31a77d)}.sem5 .semester-top{background:linear-gradient(110deg,#b66a17,#e49a38)}.sem6 .semester-top{background:linear-gradient(110deg,#315a9b,#5a84c5)}.sem7 .semester-top{background:linear-gradient(110deg,#6d3d91,#9b64bf)}.sem8 .semester-top{background:linear-gradient(110deg,#35445e,#667b9b)}.semOther .semester-top{background:linear-gradient(110deg,#48566c,#718096)}
+.sem-status{font-size:10px;font-weight:800;letter-spacing:.04em;border-radius:30px;padding:5px 9px;background:#ffffffed;color:#176044;white-space:nowrap}.semester-card.failed{border:1px solid #f0c8cc;background:#fffafa}.semester-card.failed .sem-status{color:#b42332;background:#fff0f1}.semester-card.unknown .sem-status{color:#66521a;background:#fff6d9}.sem-body{padding:13px 14px}.gpa-line{display:flex;align-items:center;justify-content:space-between;gap:12px}.gpa-label{font-size:11px;color:var(--muted)}.gpa-value{font-size:25px;font-weight:850;letter-spacing:-.03em;color:#087f5b}.failed .gpa-value{color:var(--red)}.unknown .gpa-value{color:#8a6a18}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.meta span{font-size:10px;color:#58677d;background:#f1f5f9;border-radius:7px;padding:5px 7px}.subjects{margin-top:11px;padding:10px 11px;border-radius:10px;background:#fff0f1;color:#9d2734;font-size:11px;line-height:1.7}.subjects b{display:block;margin-bottom:3px}.source{font-size:10px;color:#8290a4;margin-top:9px;overflow-wrap:anywhere}.overall{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 13px}.overall span{background:#eef3fb;border:1px solid #e2eaf5;border-radius:9px;padding:7px 10px;font-size:11px;color:#34445e}.empty{padding:23px;text-align:center;color:var(--muted);background:#f8fafc;border-radius:13px;font-size:13px}.notice{font-size:11px;line-height:1.7;color:var(--muted);margin:15px 3px 0}.about{display:flex;align-items:center;gap:14px}.about img{width:62px;height:62px;object-fit:cover;border-radius:50%;border:3px solid #e8eff8}.about h3{margin:0 0 4px;font-size:14px}.about p{margin:3px 0;font-size:11px;color:var(--muted)}.about a{color:var(--blue);text-decoration:none;font-weight:700}footer{text-align:center;color:#8390a3;font-size:11px;padding:18px 14px 25px}
+@media(max-width:560px){.panel{padding:17px}.search-row{flex-direction:column}.search-row button{padding:14px}.semester-top{align-items:flex-start}.gpa-value{font-size:22px}}
 </style>
 </head>
 <body>
-<header class="hero"><div class="wrap">
-<div class="brand">BTEB · DIPLOMA RESULT PORTAL</div>
-<h1>Diploma Result Portal Hub</h1>
-<p class="subtitle">একটি রোল নম্বর দিয়ে খুঁজে নিন প্রকাশিত ফলাফলের রেকর্ড</p>
-</div></header>
+<header class="hero"><div class="wrap"><div class="brand">BTEB · DIPLOMA RESULT PORTAL</div><h1>Diploma Result Portal Hub</h1><p class="subtitle">একটি রোল নম্বর দিয়ে সব পাওয়া সেমিস্টারের ফলাফল দেখুন</p></div></header>
 <main>
 <section class="panel">
-<h2 class="section-title">ফলাফল অনুসন্ধান</h2>
-<p class="section-sub">আপনার ৬ সংখ্যার রোল নম্বরটি লিখুন</p>
-<div class="search-row">
-<input id="roll" type="text" inputmode="numeric" maxlength="6" placeholder="যেমন: 123456" autocomplete="off" aria-label="৬ সংখ্যার রোল নম্বর">
-<button id="searchBtn" type="button">ফলাফল দেখুন</button>
-</div>
-<div class="hint">একাধিক পরীক্ষার রেকর্ড থাকলে সবগুলো আলাদা করে দেখানো হবে।</div>
-<div id="status" class="status" aria-live="polite"></div>
-<div id="results" class="results"></div>
+<h2 class="section-title">রেজাল্ট অনুসন্ধান</h2><p class="section-sub">৬ সংখ্যার শিক্ষার্থী রোল নম্বর লিখুন</p>
+<div class="search-row"><input id="roll" type="text" inputmode="numeric" maxlength="6" placeholder="রোল নম্বর লিখুন" autocomplete="off" aria-label="৬ সংখ্যার রোল নম্বর"><button id="searchBtn" type="button">ফলাফল দেখুন</button></div>
+<div class="hint">একই রোলের একাধিক সেমিস্টার বা রেগুলেশনের রেকর্ড থাকলে সবগুলো দেখানো হবে।</div>
+<div id="status" class="status" aria-live="polite"></div><div id="results" class="groups"></div>
 </section>
-<section class="panel" style="margin-top:17px">
-<h2 class="section-title">পরিচিতি</h2>
-<div class="about">
-<img src="developer-photo.jpg" alt="Profile photo" onerror="this.style.display='none'">
-<div>
-<h3>Joy Chandra Sarkar</h3>
-<p>Diploma in Engineering Student</p>
-<p>Feni Government Computer Institute · Telecommunication</p>
-<p><a href="https://www.facebook.com/joy.chondro.sarker.2024" target="_blank" rel="noopener">Facebook Profile</a></p>
-</div>
-</div>
-</section>
-<p class="notice">এই ওয়েবসাইটটি শিক্ষার্থী-উদ্যোগে তৈরি একটি অনুসন্ধান পোর্টাল; এটি BTEB-এর অফিসিয়াল ওয়েবসাইট নয়। ফলাফলের চূড়ান্ত সত্যতা সংশ্লিষ্ট বোর্ডের প্রকাশিত নথির সঙ্গে মিলিয়ে যাচাই করুন।</p>
-</main>
-<footer>Diploma Result Portal Hub</footer>
+<section class="panel" style="margin-top:17px"><h2 class="section-title" style="margin-bottom:12px">পরিচিতি</h2><div class="about"><img src="developer-photo.jpg" alt="Profile photo" onerror="this.style.display='none'"><div><h3>Joy Chandra Sarkar</h3><p>Diploma in Engineering Student</p><p>Feni Government Computer Institute · Telecommunication</p><p><a href="https://www.facebook.com/joy.chondro.sarker.2024" target="_blank" rel="noopener">Facebook Profile</a></p></div></div></section>
+<p class="notice">এই ওয়েবসাইটটি শিক্ষার্থী-উদ্যোগে তৈরি অনুসন্ধান পোর্টাল; এটি BTEB-এর অফিসিয়াল ওয়েবসাইট নয়। ফলাফলের চূড়ান্ত সত্যতা বোর্ডের প্রকাশিত নথির সঙ্গে মিলিয়ে যাচাই করুন। বিষয় কোড দেখানো হলে সেটি মূল নথিতে থাকা কোড; বিষয় নাম অনুমান করে দেখানো হয় না।</p>
+</main><footer>Diploma Result Portal Hub</footer>
 <script>
 'use strict';
-const input = document.getElementById('roll');
-const btn = document.getElementById('searchBtn');
-const statusBox = document.getElementById('status');
-const output = document.getElementById('results');
-let indexPromise = null;
-
-function loadIndex() {
-  if (!indexPromise) {
-    indexPromise = fetch(new URL('results-index.json.gz', document.baseURI), {cache:'no-store'})
-      .then(response => {
-        if (!response.ok) throw new Error('ফলাফলের ডেটা ফাইল পাওয়া যায়নি (' + response.status + ')');
-        if (!('DecompressionStream' in window)) throw new Error('এই ব্রাউজারে gzip ডেটা খোলার সুবিধা নেই');
-        return response.arrayBuffer();
-      })
-      .then(buffer => new Response(
-        new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))
-      ).text())
-      .then(text => {
-        const data = JSON.parse(text);
-        if (!data || typeof data !== 'object') throw new Error('ডেটা ফাইলের গঠন সঠিক নয়');
-        return data;
-      })
-      .catch(error => {
-        indexPromise = null;
-        throw error;
-      });
+const input=document.getElementById('roll'),btn=document.getElementById('searchBtn'),statusBox=document.getElementById('status'),output=document.getElementById('results');
+let dataPromise=null;
+function loadData(){
+ if(!dataPromise){
+  dataPromise=fetch(new URL('results-index.json.gz',document.baseURI),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('ডেটা ফাইল পাওয়া যায়নি: '+r.status);if(!('DecompressionStream'in window))throw new Error('এই ব্রাউজারে gzip খোলার সুবিধা নেই');return r.arrayBuffer()}).then(b=>new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('gzip'))).text()).then(t=>{const d=JSON.parse(t);if(!d||typeof d!=='object')throw new Error('ডেটা ফাইলের গঠন সঠিক নয়');return d}).catch(e=>{dataPromise=null;throw e});
+ }
+ return dataPromise;
+}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function semesterName(n){const names=['','১ম','২য়','৩য়','৪র্থ','৫ম','৬ষ্ঠ','৭ম','৮ম'];return names[n]||n+'তম';}
+function makeGroups(records){
+ const groups=new Map();
+ for(const rec of records){
+  if(!rec||!rec.semester)continue;
+  const groupKey=[rec.category||'Diploma in Engineering',rec.regulation||''].join('|');
+  if(!groups.has(groupKey))groups.set(groupKey,{category:rec.category||'Diploma in Engineering',regulation:rec.regulation||'',institute:rec.institute||'',semesters:new Map(),cgpa:null});
+  const group=groups.get(groupKey);if(!group.institute&&rec.institute)group.institute=rec.institute;
+  if(rec.cgpa&&(!group.cgpa||Number(rec.semester)>=group.cgpa.sourceSemester))group.cgpa={value:rec.cgpa,sourceSemester:Number(rec.semester)};
+  const gp=rec.gpas||{};
+  for(const [semText,value] of Object.entries(gp)){
+   const sem=Number(semText);if(!sem||sem>8)continue;
+   const candidate={semester:sem,value:String(value),status:String(value).toLowerCase()==='ref'?'FAIL':'PASS',sourceSemester:Number(rec.semester)||sem,file:rec.file,page:rec.page,institute:rec.institute||'',subjects:sem===Number(rec.semester)?(rec.subjects||[]):[]};
+   const old=group.semesters.get(sem);
+   if(!old||candidate.sourceSemester>=old.sourceSemester||(candidate.status==='FAIL'&&old.status==='UNKNOWN'))group.semesters.set(sem,candidate);
   }
-  return indexPromise;
+  const current=Number(rec.semester),currentVal=gp[current];
+  if(current&&!currentVal&&rec.status==='FAIL'&&!group.semesters.has(current))group.semesters.set(current,{semester:current,value:'ref',status:'FAIL',sourceSemester:current,file:rec.file,page:rec.page,institute:rec.institute||'',subjects:rec.subjects||[]});
+  if(current&&!currentVal&&!group.semesters.has(current)&&rec.status==='UNKNOWN')group.semesters.set(current,{semester:current,value:'তথ্য অসম্পূর্ণ',status:'UNKNOWN',sourceSemester:current,file:rec.file,page:rec.page,institute:rec.institute||'',subjects:[]});
+ }
+ return [...groups.values()].map(g=>({...g,semesters:[...g.semesters.values()].sort((a,b)=>a.semester-b.semester)})).filter(g=>g.semesters.length).sort((a,b)=>a.category.localeCompare(b.category)||a.regulation.localeCompare(b.regulation));
 }
-
-function escapeHTML(value) {
-  return String(value ?? '').replace(/[&<>"']/g, char => ({
-    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
-  })[char]);
+function cardHTML(c){
+ const cls=c.status==='FAIL'?'failed':(c.status==='UNKNOWN'?'unknown':'passed');
+ const badge=c.status==='FAIL'?'FAIL / REFERRED':(c.status==='UNKNOWN'?'তথ্য অসম্পূর্ণ':'PASSED');
+ const value=c.value==='ref'?'রেফার্ড':(c.status==='UNKNOWN'?'যাচাই প্রয়োজন':esc(c.value));
+ const institute=c.institute?'<span>'+esc(c.institute)+'</span>':'';
+ const regulation=c.regulation?'<span>'+esc(c.regulation)+' Regulation</span>':'';
+ const subjects=(c.status==='FAIL'&&c.subjects&&c.subjects.length)?'<div class="subjects"><b>মূল নথিতে উল্লেখিত বিষয় কোড</b>'+c.subjects.map(esc).join(' · ')+'<br><span>কোডগুলো মূল নথি থেকে নেওয়া; বিষয় নাম এখানে অনুমান করা হয়নি।</span></div>':'';
+ return '<article class="semester-card sem'+(c.semester>=1&&c.semester<=8?c.semester:'Other')+' '+cls+'"><div class="semester-top"><h4>'+semesterName(c.semester)+' সেমিস্টার</h4><span class="sem-status">'+badge+'</span></div><div class="sem-body"><div class="gpa-line"><div><div class="gpa-label">'+(c.value==='ref'?'ফলাফল':'GPA')+'</div><div class="gpa-value">'+value+'</div></div><div class="gpa-label">রোলের রেকর্ড</div></div><div class="meta">'+regulation+institute+'</div>'+subjects+'<div class="source">উৎস: '+esc(c.file||'বোর্ডের নথি')+' · পৃষ্ঠা '+esc(c.page??'—')+'</div></div></article>';
 }
-
-function getDetails(filename) {
-  const match = String(filename).match(/RESULT_(\d+)(st|nd|rd|th)?_([^.]*)/i);
-  if (!match) return {semester:'বিশেষ ফলাফল', regulation:'', category:'Manual Result'};
-  const semester = match[1];
-  const tail = match[3].replace(/_(2016|2022)?_?Regulation.*/i, '').replace(/_/g, ' ').trim();
-  const regulation = (String(filename).match(/(2016|2022)_Regulation/i) || [])[1] || '';
-  const ordinal = semester === '1' ? '1st' : semester === '2' ? '2nd' : semester === '3' ? '3rd' : semester + 'th';
-  return {semester:ordinal + ' Semester', regulation, category:tail.replace(/(2016|2022).*$/,'').trim() || 'Diploma in Engineering'};
+function groupHTML(g){
+ const passed=g.semesters.filter(x=>x.status==='PASS').length,failed=g.semesters.filter(x=>x.status==='FAIL').length;
+ const overall='<div class="overall"><span>মোট সেমিস্টার: '+g.semesters.length+'</span><span>Passed: '+passed+'</span><span>Failed / Referred: '+failed+'</span>'+(g.cgpa?'<span>CGPA: '+esc(g.cgpa.value)+'</span>':'')+'</div>';
+ return '<section class="group"><div class="group-head"><h3>'+esc(g.category)+(g.regulation?' · '+esc(g.regulation)+' Regulation':'')+'</h3><p>'+(g.institute?esc(g.institute):'প্রতিষ্ঠানের নাম নথিতে শনাক্ত হয়নি')+'</p></div><div class="semester-list">'+overall+g.semesters.map(cardHTML).join('')+'</div></section>';
 }
-
-function renderHit(roll, hit) {
-  const filename = hit.file || 'Result document';
-  const details = getDetails(filename);
-  const snippet = hit.snippet || '';
-  let metricLabel = 'রেকর্ড';
-  let metricValue = 'মূল নথিতে যাচাই করুন';
-
-  // Detect a GPA/CGPA value near the searched roll when the extracted text contains one.
-  const escapedRoll = roll.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const patterns = [
-    new RegExp(escapedRoll + '\\s*\\(\\s*([0-9]+(?:\\.[0-9]+)?)\\s*\\)', 'i'),
-    new RegExp(escapedRoll + '\\s*(?:CGPA|GPA)\\s*[:=]?\\s*([0-9]+(?:\\.[0-9]+)?)', 'i')
-  ];
-  for (const pattern of patterns) {
-    const match = pattern.exec(snippet);
-    if (match) { metricLabel = 'GPA / CGPA'; metricValue = match[1]; break; }
-  }
-
-  const card = document.createElement('article');
-  card.className = 'result';
-  card.innerHTML =
-    '<div class="result-head"><div><h3>' + escapeHTML(details.category) + ' · ' + escapeHTML(details.semester) + '</h3>' +
-    '<div class="sub">' + (details.regulation ? escapeHTML(details.regulation + ' Regulation') + ' · ' : '') + escapeHTML(filename) +
-    '</div></div><span class="tag">পৃষ্ঠা ' + escapeHTML(hit.page ?? '—') + '</span></div>' +
-    '<div class="metrics"><div class="metric"><label>রোল নম্বর</label><strong>' + escapeHTML(roll) + '</strong></div>' +
-    '<div class="metric"><label>' + escapeHTML(metricLabel) + '</label><strong>' + escapeHTML(metricValue) + '</strong></div></div>' +
-    '<div class="pill">রেকর্ড পাওয়া গেছে</div>' +
-    '<div class="record"><b>মূল রেকর্ডের অংশ:</b><br>' + escapeHTML(snippet || 'এই রেকর্ডের জন্য অতিরিক্ত টেক্সট পাওয়া যায়নি।') + '</div>';
-  return card;
+async function searchResults(){
+ const roll=input.value.trim();output.replaceChildren();statusBox.className='status';
+ if(!/^\d{6}$/.test(roll)){statusBox.textContent='সঠিক ৬ সংখ্যার রোল নম্বর লিখুন।';return;}
+ btn.disabled=true;statusBox.textContent='ফলাফল খোঁজা হচ্ছে…';
+ try{
+  const index=await loadData(),records=Array.isArray(index[roll])?index[roll]:[];
+  const groups=makeGroups(records);
+  if(!groups.length){statusBox.textContent=records.length?'রেকর্ড পাওয়া গেছে, তবে সেমিস্টারভিত্তিক তথ্য শনাক্ত করা যায়নি।':'এই রোল নম্বরের কোনো ফলাফল পাওয়া যায়নি।';statusBox.className='status '+(records.length?'':'error');return;}
+  const total=groups.reduce((n,g)=>n+g.semesters.length,0);statusBox.textContent='রোল '+roll+' — '+total+'টি সেমিস্টারের রেকর্ড পাওয়া গেছে।';statusBox.className='status ok';
+  output.innerHTML=groups.map(groupHTML).join('');
+ }catch(e){statusBox.textContent='সার্চ ডেটা লোড করা যায়নি। index.html ও results-index.json.gz একই ফোল্ডারে আছে কি না দেখুন।';statusBox.className='status error';console.error(e);}
+ finally{btn.disabled=false;}
 }
-
-async function searchResults() {
-  const roll = input.value.trim();
-  output.replaceChildren();
-  if (!/^\d{6}$/.test(roll)) {
-    statusBox.textContent = 'অনুগ্রহ করে সঠিক ৬ সংখ্যার রোল নম্বর লিখুন।';
-    return;
-  }
-  btn.disabled = true;
-  statusBox.textContent = 'ফলাফল খোঁজা হচ্ছে…';
-  try {
-    const index = await loadIndex();
-    const hits = Array.isArray(index[roll]) ? index[roll].slice() : [];
-    hits.sort((a,b) => String(a.file).localeCompare(String(b.file)) || Number(a.page) - Number(b.page));
-    statusBox.textContent = hits.length
-      ? 'রোল ' + roll + ' — ' + hits.length + 'টি রেকর্ড পাওয়া গেছে।'
-      : 'এই রোল নম্বরের কোনো রেকর্ড পাওয়া যায়নি।';
-    if (!hits.length) {
-      output.innerHTML = '<div class="empty">রোল নম্বরটি আবার যাচাই করুন। অন্য কোনো পরীক্ষার রেকর্ড থাকলে সেটিও এখানে দেখা যাবে।</div>';
-      return;
-    }
-    hits.forEach(hit => output.appendChild(renderHit(roll, hit)));
-  } catch (error) {
-    statusBox.textContent = 'সার্চ ডেটা লোড করা যায়নি। results-index.json.gz ফাইলটি ঠিকভাবে আপলোড হয়েছে কি না যাচাই করুন।';
-    console.error('Result search error:', error);
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-btn.addEventListener('click', searchResults);
-input.addEventListener('keydown', event => {
-  if (event.key === 'Enter') searchResults();
-});
-input.addEventListener('input', () => {
-  input.value = input.value.replace(/\D/g, '').slice(0, 6);
-});
+btn.addEventListener('click',searchResults);input.addEventListener('keydown',e=>{if(e.key==='Enter')searchResults();});input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(0,6);});
 </script>
-</body>
-</html>
+</body></html>
