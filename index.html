@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b4e">
+<title>Diploma Result Portal Hub</title>
+<style>
+:root{--navy:#102b4e;--blue:#1769aa;--bg:#f2f6fb;--ink:#172437;--muted:#64748b;--line:#dce5ef;--green:#087f5b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+header{background:radial-gradient(circle at 85% 15%,#3182ce55,transparent 30%),linear-gradient(130deg,#0b1f3a,#145b91);color:white;padding:32px 18px 76px}
+.wrap{max-width:900px;margin:auto}.brand{font-size:12px;letter-spacing:.13em;opacity:.8;font-weight:700}.hero h1{font-size:clamp(27px,5vw,43px);margin:13px 0 8px;line-height:1.2}.hero p{margin:0;color:#dbeafe;font-size:15px}
+main{max-width:900px;margin:-42px auto 38px;padding:0 14px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 15px 40px #102b4e12}
+.search-title{font-size:18px;margin:0 0 12px}.searchrow{display:flex;gap:10px}.searchrow input{flex:1;min-width:0;border:1px solid #cbd7e5;border-radius:13px;padding:15px;font-size:19px;outline:none}.searchrow input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa18}
+button{border:0;border-radius:13px;background:var(--blue);color:#fff;padding:0 22px;font-size:15px;font-weight:750;cursor:pointer}button:disabled{opacity:.55;cursor:wait}
+.hint,.small{font-size:12px;color:var(--muted);margin-top:10px}.status{margin:18px 0 8px;font-weight:700;font-size:14px}
+.results{display:grid;gap:13px}.result{border:1px solid var(--line);border-radius:16px;padding:17px;background:linear-gradient(180deg,#fff,#fbfdff)}
+.result-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid #edf1f6;padding-bottom:12px}.result h3{font-size:16px;margin:0 0 5px}.sub{font-size:12px;color:var(--muted)}.tag{font-size:11px;background:#eaf3fc;color:#18598f;padding:6px 10px;border-radius:30px;white-space:nowrap;font-weight:700}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}.metric{background:#f6f9fc;border:1px solid #e9eff6;border-radius:12px;padding:11px}.metric label{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}.metric strong{font-size:17px;overflow-wrap:anywhere}.record{margin-top:12px;padding:11px 12px;border-radius:11px;background:#f8fafc;color:#526277;font-size:12px;line-height:1.7;overflow-wrap:anywhere}.status-pill{display:inline-block;background:#e8f7f1;color:var(--green);font-size:11px;padding:5px 9px;border-radius:30px;font-weight:750;margin-top:12px}
+.empty{padding:24px;text-align:center;color:var(--muted);background:#f8fafc;border-radius:13px}
+.about{display:flex;gap:15px;align-items:center}.about img{width:68px;height:68px;object-fit:cover;border-radius:50%;border:3px solid #e7eff8}.about h3{margin:0 0 4px;font-size:16px}.about p{margin:3px 0;font-size:12px;color:var(--muted)}.about a{color:var(--blue);text-decoration:none;font-weight:650}
+footer{text-align:center;color:#718096;font-size:12px;padding:20px 14px}.notice{font-size:12px;line-height:1.7;color:var(--muted);margin-top:16px}
+@media(max-width:540px){.panel{padding:16px}.searchrow{flex-direction:column}.searchrow button{padding:14px}.result-head{display:block}.tag{display:inline-block;margin-top:8px}.metrics{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div class="brand">BTEB • DIPLOMA RESULT PORTAL</div><h1>Diploma Result Portal Hub</h1><p>একটি রোল নম্বরেই খুঁজে নিন প্রকাশিত ফলাফলের তথ্য</p></div></header>
+<main>
+<section class="panel">
+<h2 class="search-title">শিক্ষার্থীর রোল নম্বর</h2>
+<div class="searchrow"><input id="roll" inputmode="numeric" maxlength="6" placeholder="৬ সংখ্যার রোল লিখুন" autocomplete="off"><button id="searchBtn">ফলাফল দেখুন</button></div>
+<div class="hint">শুধু ৬ সংখ্যার রোল নম্বর লিখে সার্চ করুন। একাধিক ফলাফল থাকলে সবগুলো আলাদা কার্ডে দেখাবে।</div>
+<div id="status" class="status" aria-live="polite"></div><div id="results" class="results"></div>
+</section>
+<section class="panel" style="margin-top:18px"><h2 class="search-title">Developer</h2><div class="about">
+<img src="developer-photo.jpg" alt="Developer profile photo" onerror="this.style.display='none'">
+<div><h3>Joy Chandra Sarkar</h3><p>Diploma in Engineering Student</p><p>Feni Government Computer Institute • Telecommunication</p><p><a href="https://www.facebook.com/joy.chondro.sarker.2024" target="_blank" rel="noopener">Facebook Profile ↗</a></p></div>
+</div></section>
+<p class="notice">এটি শিক্ষার্থী-তৈরি অনুসন্ধান পোর্টাল; BTEB-এর অফিসিয়াল ওয়েবসাইট নয়। ফলাফলের চূড়ান্ত সত্যতা সংশ্লিষ্ট বোর্ডের প্রকাশিত নথি দিয়ে যাচাই করুন।</p>
+</main><footer>Diploma Result Portal Hub • Student Project</footer>
+<script>
+const input=document.getElementById('roll'),btn=document.getElementById('searchBtn'),status=document.getElementById('status'),out=document.getElementById('results');
+let indexPromise;
+function loadIndex(){if(!indexPromise){indexPromise=fetch('results-index.json.gz').then(r=>{if(!r.ok)throw Error('index missing');if(!('DecompressionStream'in window))throw Error('gzip unsupported');return r.arrayBuffer()}).then(b=>new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('gzip'))).json())}return indexPromise}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function details(file){let s=file.match(/RESULT_(\d+)(?:st|nd|rd|th)?_([^.]*)/i);if(!s)return {semester:'বিশেষ ফলাফল',reg:'',category:'Manual Result'};let sem=s[1],tail=s[2].replace(/_Regulation.*/i,'').replace(/_/g,' ');let reg=(file.match(/(2016|2022)_Regulation/i)||[])[1]||'';let category=tail.replace(/(2016|2022).*$/,'').trim();let ord=sem==='1'?'1st':sem==='2'?'2nd':sem==='3'?'3rd':sem+'th';return {semester:ord+' Semester',reg,category:category||'Diploma in Engineering'}}
+function renderHit(roll,hit){
+ const d=details(hit.file),snip=hit.snippet||'', escaped=esc(snip);
+ const exact=new RegExp(roll+'\\s*(?:\\\\(\\\\s*([0-9]+(?:\\.[0-9]+)?)\\s*\\\\)|\\\\{([^}]{0,100})\\}|(?:cgpa|gpa)\\s*[:=]?\\\\s*([0-9]+(?:\\.[0-9]+)?))','i').exec(snip);
+ let label='রেকর্ড পাওয়া গেছে',value='মূল নথিতে যাচাই করুন';
+ if(exact&&exact[1]){label='GPA';value=exact[1];}
+ else if(exact&&exact[3]){label='CGPA / GPA';value=exact[3];}
+ else if(exact&&exact[2]){label='রেফার্ড বিষয়';value='বিষয় কোড মূল নথিতে';}
+ const card=document.createElement('article');card.className='result';
+ card.innerHTML=`<div class="result-head"><div><h3>${esc(d.category)} ${esc(d.semester)}</h3><div class="sub">${d.reg?esc(d.reg+' Regulation')+' • ':''}${esc(hit.file)}</div></div><span class="tag">পৃষ্ঠা ${hit.page}</span></div><div class="metrics"><div class="metric"><label>রোল নম্বর</label><strong>${esc(roll)}</strong></div><div class="metric"><label>${esc(label)}</label><strong>${esc(value)}</strong></div></div><div class="status-pill">রেকর্ড মিলেছে</div><div class="record"><b>মূল রেকর্ডের অংশ:</b><br>${escaped}</div>`;
+ return card;
+}
+function search(){const roll=input.value.trim();out.innerHTML='';if(!/^\\d{6}$/.test(roll)){status.textContent='সঠিক ৬ সংখ্যার রোল নম্বর লিখুন।';return}btn.disabled=true;status.textContent='ফলাফল খোঁজা হচ্ছে…';loadIndex().then(index=>{const hits=(index[roll]||[]).slice().sort((a,b)=>a.file.localeCompare(b.file)||a.page-b.page);status.textContent=hits.length?`রোল ${roll} — ${hits.length}টি ফলাফলের রেকর্ড পাওয়া গেছে।`:`রোল ${roll} পাওয়া যায়নি।`;if(!hits.length){out.innerHTML='<div class="empty">এই রোল নম্বরের কোনো ফলাফল পাওয়া যায়নি। রোলটি আবার যাচাই করুন।</div>';return}hits.forEach(h=>out.append(renderHit(roll,h)))}).catch(e=>{status.textContent='সার্চ ডেটা লোড হয়নি। results-index.json.gz ফাইলটি index.html-এর পাশে আছে কি না দেখুন।'}).finally(()=>btn.disabled=false)}
+btn.addEventListener('click',search);input.addEventListener('keydown',e=>{if(e.key==='Enter')search()});input.addEventListener('input',()=>input.value=input.value.replace(/\\D/g,'').slice(0,6));
+</script></body></html>
