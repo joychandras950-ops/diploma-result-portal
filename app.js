@@ -6,7 +6,7 @@
   const message = document.getElementById('message');
   const result = document.getElementById('result');
   let index = null;
-  let portalConfig = { institute: 'Feni Government Computer Institute', developerName: 'Developer', facebook: 'https://www.facebook.com/joy.chondro.sarker.2024' };
+  let portalConfig = { institute: 'Feni Government Computer Institute', developerName: 'Joy Chondro Sarker', facebook: 'https://www.facebook.com/joy.chondro.sarker.2024' };
 
   async function loadPortalConfig() {
     try {
@@ -16,8 +16,10 @@
       portalConfig = { ...portalConfig, ...config };
       const name = byId('developerName');
       const link = byId('developerFacebook');
+      const institute = byId('developerInstitute');
       if (name && portalConfig.developerName) name.textContent = portalConfig.developerName;
       if (link && portalConfig.facebook) link.href = portalConfig.facebook;
+      if (institute && portalConfig.institute) institute.textContent = portalConfig.institute;
     } catch (_) { /* Built-in defaults keep the footer working. */ }
   }
 
