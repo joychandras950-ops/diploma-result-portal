@@ -48,8 +48,7 @@
     if (!/^\d+$/.test(roll)) return showMessage('সঠিক রোল নম্বর লিখুন।', true);
     const records = index[roll];
     if (!records || !records.length) return showMessage('এই রোল নম্বরের কোনো ফলাফল পাওয়া যায়নি। রোল নম্বরটি যাচাই করে আবার চেষ্টা করুন।', true);
-    const sortedRecords = records.slice().sort((a,b) => Number(b.semester || 0) - Number(a.semester || 0));
-    const record = sortedRecords[0];
+    const record = records.slice().sort((a,b) => Number(b.semester || 0) - Number(a.semester || 0))[0];
     byId('institute').textContent = record.institute || portalConfig.institute || 'তথ্য নেই';
     byId('category').textContent = record.category || 'Diploma in Engineering';
     byId('regulation').textContent = record.regulation || 'তথ্য নেই';
@@ -57,7 +56,7 @@
     byId('status').textContent = record.status || 'তথ্য নেই';
     byId('status').className = record.status === 'PASS' ? 'pass' : '';
 
-    const gpas = Object.assign({}, ...sortedRecords.slice().reverse().map(item => item.gpas || {}));
+    const gpas = record.gpas || {};
     const semesters = Object.keys(gpas).sort((a,b) => Number(a)-Number(b));
     const list = byId('semesterList');
     list.replaceChildren();
@@ -71,34 +70,6 @@
       const gpa = document.createElement('div'); gpa.className = 'gpa'; gpa.textContent = Number.isFinite(value) ? value.toFixed(2) : gpas[sem];
       row.append(name, track, gpa); list.append(row);
     });
-    // ফেল করা বিষয়গুলো শুধু মূল JSON-এর FAIL রেকর্ড ও subjects তালিকা থেকে দেখানো হয়।
-    const failRecords = sortedRecords.filter(item => String(item.status || '').toUpperCase() === 'FAIL' && Array.isArray(item.subjects) && item.subjects.length);
-    const failPanel = byId('failSummary');
-    const failList = byId('failSemesterList');
-    failList.replaceChildren();
-    const totalFailed = new Set();
-    failRecords.forEach(item => {
-      const codes = [...new Set(item.subjects.map(code => String(code).trim()).filter(Boolean))];
-      codes.forEach(code => totalFailed.add(`${item.semester}:${code}`));
-      const card = document.createElement('div');
-      card.className = 'fail-semester-card';
-      const heading = document.createElement('strong');
-      const semNo = Number(item.semester);
-      const ordinals = {'1':'১ম','2':'২য়','3':'৩য়','4':'৪র্থ','5':'৫ম','6':'৬ষ্ঠ','7':'৭ম','8':'৮ম'};
-      heading.textContent = `${ordinals[String(semNo)] || semNo} সেমিস্টার — ${codes.length}টি বিষয়ে অকৃতকার্য`;
-      const codesBox = document.createElement('div');
-      codesBox.className = 'fail-codes';
-      codes.forEach(code => {
-        const chip = document.createElement('span');
-        chip.className = 'fail-code';
-        chip.textContent = code;
-        codesBox.append(chip);
-      });
-      card.append(heading, codesBox);
-      failList.append(card);
-    });
-    failPanel.classList.toggle('hidden', failRecords.length === 0);
-    byId('failTotal').textContent = `${totalFailed.size.toLocaleString('bn-BD')}টি`;
     byId('semesterNote').textContent = semesters.length ? `এই রেকর্ডে ${semesters.length}টি সেমিস্টারের GPA পাওয়া গেছে।` : 'এই রেকর্ডে সেমিস্টারভিত্তিক GPA পাওয়া যায়নি।';
     byId('semesterNote').classList.toggle('hidden', semesters.length === 0);
     byId('cgpaNotice').classList.toggle('hidden', record.cgpa !== null && record.cgpa !== undefined && record.cgpa !== '');
