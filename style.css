@@ -7,3 +7,6 @@
 
 /* Failed-subject details */
 .fail-panel{border-color:#f2caca}.fail-total{margin:0 0 12px;color:#8e2424;font-weight:600}.fail-total strong{font-size:20px}.fail-semester-list{display:grid;gap:10px}.fail-semester-card{padding:12px;border:1px solid #f1caca;background:#fff8f8;border-radius:12px}.fail-semester-card>strong{display:block;color:#9c2525;margin-bottom:9px}.fail-codes{display:flex;flex-wrap:wrap;gap:7px}.fail-code{display:inline-block;padding:5px 9px;border-radius:8px;background:#ffe4e4;color:#922626;font-weight:600;font-size:13px}
+
+/* Referred-subject details, kept separate from FAIL subjects */
+.referred-panel{border-color:#f0d59a}.referred-total{margin:0 0 12px;color:#80540a;font-weight:600}.referred-total strong{font-size:20px}.referred-semester-list{display:grid;gap:10px}.referred-semester-card{padding:12px;border:1px solid #f0d59a;background:#fffbf1;border-radius:12px}.referred-semester-card>strong{display:block;color:#80540a;margin-bottom:9px}.referred-codes{display:flex;flex-wrap:wrap;gap:7px}.referred-code{display:inline-block;padding:5px 9px;border-radius:8px;background:#fff0c9;color:#76500b;font-weight:600;font-size:13px}
